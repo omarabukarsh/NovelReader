@@ -131,3 +131,29 @@ td.box span{display:inline-block;width:4.2mm;height:4.2mm;border:1.4px solid var
 .links .q{display:block;font-size:8pt;color:var(--muted)}
 
 .endblock{break-inside:avoid;page-break-inside:avoid}
+
+/* ---------- checklist-driven layout ---------- */
+.ck{margin-bottom:5mm}
+.ck-t{font-size:11pt;background:var(--navy);color:#fff;padding:1.6mm 3mm;border-radius:2mm 2mm 0 0;margin:0;break-after:avoid}
+table.cktbl{table-layout:fixed;font-size:8.9pt}
+col.c-n{width:7mm} col.c-s{width:46mm} col.c-b{width:8.5mm}
+table.cktbl th{background:#2f4d74;padding:1.2mm 2mm;font-size:8.2pt}
+table.cktbl th:nth-child(n+4){text-align:center;padding:1.2mm 0}
+table.cktbl td{padding:1.3mm 2mm}
+table.cktbl tbody tr:nth-child(even) td{background:#fff}
+table.cktbl td.st{font-weight:650;color:var(--navy)}
+table.cktbl td.how{color:#2c3a4b}
+tr.phase td{background:#fff1b8 !important;font-weight:750;color:var(--navy);font-size:9.6pt;border-top:1.5px solid #e2c75c;border-bottom:1.5px solid #e2c75c}
+tr.phase td em{font-style:normal;color:#fff;background:var(--red);border-radius:2mm;padding:0 1.6mm;font-size:8pt;margin-left:1.5mm}
+tr.phase .pnote{font-weight:500;color:#6a5a1c;font-size:8.6pt}
+.phase-block.help tr.phase td{background:#e8f6ec !important;border-color:#9fd1ad}
+.phase-block.end tr.phase td{background:#fff3e2 !important;border-color:#f0c48a}
+td.bx{text-align:center;padding:1.3mm 0 !important}
+td.bx span{display:inline-block;width:3.8mm;height:3.8mm;border:1.3px solid var(--navy);border-radius:.7mm;background:#fff}
+.figref{color:var(--teal);font-weight:650;white-space:nowrap}
+.phase-block table{break-inside:avoid;page-break-inside:avoid}
+.figrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm;margin:2.5mm 0 3.5mm;align-items:start}
+.figrow figure{break-inside:avoid}
+.figrow figcaption{font-size:7.8pt}
+.links1{margin-top:4mm;font-size:8.6pt;border-top:1px dashed var(--gold);padding-top:2mm;break-inside:avoid}
+.links1 a{color:#9b5c00;font-weight:650}

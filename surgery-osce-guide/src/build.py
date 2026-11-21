@@ -8,9 +8,9 @@ import json, os, re, subprocess, sys, html, urllib.parse
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "src")
 sys.path.insert(0, SRC)
-from content_1 import TOPICS_A
-from content_2 import TOPICS_B
-from content_3 import TOPICS_C
+from checklists_a import TOPICS_A
+from checklists_b import TOPICS_B
+from checklists_c import TOPICS_C
 
 TOPICS = TOPICS_A + TOPICS_B + TOPICS_C
 IMG_DIR = os.path.join(ROOT, "images")
@@ -43,10 +43,21 @@ def render_svgs():
         subprocess.run(["node", os.path.join(SRC, "render_svg.js"), IMG_DIR, "2", *todo], check=True)
 
 
+def topic_figures(t):
+    """(image id, caption) for every checklist item that has an illustration, in order."""
+    out = []
+    for _, phases in t["checklists"]:
+        for _, _, items in phases:
+            for it in items:
+                if len(it) > 2 and it[2]:
+                    out.append((it[2], f"{it[0]} — {it[1]}"))
+    return out
+
+
 def write_catalog():
     items = []
     for t in TOPICS:
-        for img, cap in t["figures"]:
+        for img, cap in topic_figures(t):
             items.append(dict(id=img, topic=t["num"], kind="step", caption=strip(cap),
                               prompt=f"{STYLE} Scene: {strip(cap)}"))
         m = t["map"]
@@ -93,29 +104,40 @@ def topic_html(t, catalog):
     n = t["num"]
     out = [f'<section class="topic" id="t{n}">',
            f'<header class="thead"><div class="kicker">TOPIC {n:02d}</div><h1>{t["title"]}</h1>'
-           f'<p class="sub">{t["subtitle"]}</p></header>']
-    # 1 Arabic summary
-    out.append(f'<div class="ar-box" dir="rtl" lang="ar"><div class="ar-h">ملخص سريع</div><p>{t["ar"]}</p></div>')
-    # 2 look for
-    out.append('<h2><span>1</span>Number of things to look for</h2><div class="look">')
-    for title, items in t["lookfor"]:
-        lis = "".join(f"<li>{i}</li>" for i in items)
-        out.append(f'<div class="lcard"><h3>{title} — <em>{len(items)} things</em></h3><ol>{lis}</ol></div>')
-    out.append('</div>')
-    # 3 procedure
-    out.append('<h2><span>2</span>Step-by-step procedure</h2>')
-    for title, steps in t["procedures"]:
-        lis = ""
-        for kind, txt in steps:
-            c = f' class="{kind}"' if kind else ""
-            lis += f"<li{c}>{txt}</li>"
-        out.append(f'<div class="proc"><h3>{title}</h3><ol class="steps">{lis}</ol></div>')
-    # 4 figures
-    out.append('<h2 class="brk"><span>3</span>Step illustrations</h2><div class="figs">')
-    for k, (img, cap) in enumerate(t["figures"], 1):
-        out.append(figure(img, cap, f"Fig {n}.{k}", catalog))
-    out.append('</div>')
-    # 5 inspection map
+           f'<p class="sub">{t["subtitle"]}</p></header>',
+           f'<div class="ar-box" dir="rtl" lang="ar"><div class="ar-h">ملخص سريع</div><p>{t["ar"]}</p></div>',
+           '<h2><span>1</span>OSCE checklist</h2>']
+    figno = 0
+    cols = ('<colgroup><col class="c-n"><col class="c-s"><col class="c-h"><col class="c-b"><col class="c-b"><col class="c-b"></colgroup>')
+    for ctitle, phases in t["checklists"]:
+        out.append(f'<div class="ck"><h3 class="ck-t">{ctitle}</h3>')
+        step = 0
+        for pi, (phase, pnote, items) in enumerate(phases):
+            count = "" if phase in ("HELP", "End of station") or len(items) < 2 else f' <em>{len(items)} things</em>'
+            pn = f' <span class="pnote">· {pnote}</span>' if pnote else ""
+            rows, figs = "", []
+            for it in items:
+                step += 1
+                ref = ""
+                if len(it) > 2 and it[2]:
+                    figno += 1
+                    figs.append((it[2], it[0], it[1], step, figno))
+                    ref = f' <span class="figref">→ Fig {n}.{figno}</span>'
+                rows += (f'<tr><td class="num">{step}</td><td class="st">{it[0]}</td><td class="how">{it[1]}{ref}</td>'
+                         f'<td class="bx"><span></span></td><td class="bx"><span></span></td><td class="bx"><span></span></td></tr>')
+            head = ('<thead><tr><th>#</th><th>Step</th><th>How / what you may find</th><th>P</th><th>MP</th><th>F</th></tr></thead>'
+                    if pi == 0 else "")
+            cls = "phase-block" + (" end" if phase == "End of station" else "") + (" help" if phase == "HELP" else "")
+            out.append(f'<div class="{cls}"><table class="cktbl">{cols}{head}<tbody>'
+                       f'<tr class="phase"><td colspan="6">{phase}{count}{pn}</td></tr>{rows}</tbody></table>')
+            if figs:
+                out.append('<div class="figrow">')
+                for img, st, how, sn, fn in figs:
+                    out.append(figure(img, f"<b>{st}</b> — {how}", f"Fig {n}.{fn} · step {sn}", catalog))
+                out.append('</div>')
+            out.append('</div>')
+        out.append('</div>')
+    # inspection map
     m = t["map"]
     wide = False
     pth = os.path.join(IMG_DIR, m["img"] + ".png")
@@ -125,24 +147,16 @@ def topic_html(t, catalog):
         wide = w > h * 1.1
     rows = "".join(f'<tr><td class="num"><span class="mk-s">{i}</span></td><td>{w}</td><td>{f}</td></tr>'
                    for i, (w, f) in enumerate(m["rows"], 1))
-    out.append(f'<div class="mapblock"><h2><span>4</span>Inspection map</h2><div class="map{" wide" if wide else ""}">'
+    out.append(f'<div class="mapblock"><h2><span>2</span>Inspection map</h2><div class="map{" wide" if wide else ""}">'
                f'{figure(m["img"], m["title"], "Map", catalog, m["markers"], "fig mapfig")}'
                f'<table class="maptbl"><thead><tr><th>#</th><th>Where to look</th><th>What you may find</th></tr></thead>'
                f'<tbody>{rows}</tbody></table></div></div>')
-    # 6 tables
-    out.append('<h2><span>5</span>Key tables</h2>')
+    out.append('<h2><span>3</span>Key tables</h2>')
     out += [table_html(tb) for tb in t["tables"]]
-    # 7 checklist
-    rows = "".join(f'<tr><td class="num">{i}</td><td>{s}</td><td class="box"><span></span></td></tr>'
-                   for i, s in enumerate(t["checklist"], 1))
-    out.append('<div class="endblock">')
-    out.append(f'<div class="cl"><h2><span>6</span>OSCE checklist</h2><table class="check"><thead><tr><th>#</th>'
-               f'<th>Step</th><th>✓</th></tr></thead><tbody>{rows}</tbody></table></div>')
-    # 8 links
-    lis = "".join(f'<li><a href="https://www.youtube.com/results?search_query={urllib.parse.quote_plus(q)}">▶ {lab}</a>'
-                  f'<span class="q">YouTube search: “{q}”</span></li>' for lab, q in t["links"])
-    out.append(f'<div class="links"><h2><span>7</span>Video links</h2><ul>{lis}</ul></div>')
-    out.append('</div></section>')
+    lis = " · ".join(f'<a href="https://www.youtube.com/results?search_query={urllib.parse.quote_plus(q)}">▶ {lab}</a>'
+                     for lab, q in t["links"])
+    out.append(f'<div class="links1"><b>Videos (YouTube search):</b> {lis}</div>')
+    out.append('</section>')
     return "\n".join(out)
 
 
@@ -156,18 +170,19 @@ def page_html(catalog, pages=None):
     cover_img = "pvd_popliteal_pulse"
     cover = (f'<section class="cover"><div class="cv-band"></div><div class="cv-in">'
              f'<div class="cv-k">Surgery · Clinical Skills</div><h1>OSCE Study Guide</h1>'
-             f'<p class="cv-s">Examination routines, inspection maps, key tables and checklists for 9 syllabus topics</p>'
+             f'<p class="cv-s">One marking-order checklist per station, with drawings, inspection maps and must-know tables — 9 syllabus topics</p>'
              f'<p class="cv-ar" dir="rtl" lang="ar">دليل المذاكرة لامتحان المهارات الإكلينيكية – الجراحة</p>'
              f'<img class="cv-img" src="images/{cover_img}.png" alt="">'
              f'<ol class="cv-list">' + "".join(f"<li>{t['title']}</li>" for t in TOPICS) + '</ol></div></section>')
     tocs = (f'<section class="toc"><h1>Contents</h1><ol>{toc}</ol>'
             f'<div class="howto"><h3>How every topic is organised</h3><ol>'
-            f'<li><b>ملخص</b> – short Arabic summary</li><li>Number of things to look for</li>'
-            f'<li>Step-by-step procedure – in the order examiners mark it</li><li>Step illustrations</li>'
-            f'<li>Inspection map – numbered red markers + table</li><li>Key tables</li>'
-            f'<li>OSCE checklist – tick the boxes while you practise</li><li>Video links</li></ol>'
-            f'<p class="note">Bookends of every examination are highlighted: <span class="tag open">start – WIPER</span> '
-            f'<span class="tag close">finish – thank, cover, wash, summarise, differential, complete, investigations</span></p></div></section>')
+            f'<li><b>ملخص</b> – short Arabic summary</li>'
+            f'<li><b>OSCE checklist</b> – the whole station in marking order: HELP → Inspection → Palpation → Percussion → '
+            f'Auscultation → End. Each phase says how many things to do; each step says how and what you may find; '
+            f'the drawings sit right under the phase they show. Tick P / MP / F while you practise.</li>'
+            f'<li><b>Inspection map</b> – numbered red markers + table</li><li><b>Key tables</b> – only the must-know ones</li></ol>'
+            f'<p class="note">HELP = Hello (introduction &amp; consent) · Exposure · Lighting · Position (and ask about pain), then wash hands. '
+            f'P = performed · MP = partially performed · F = failed.</p></div></section>')
     body = cover + tocs + "\n".join(topic_html(t, catalog) for t in TOPICS)
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Surgery OSCE Study Guide</title>'
             f'<style>{css}</style></head><body>{body}</body></html>')
