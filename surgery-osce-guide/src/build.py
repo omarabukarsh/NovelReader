@@ -62,8 +62,8 @@ def write_catalog():
         items.append(dict(id=pid, topic=None, kind="3d-photo", caption=strip(cap), legend=[strip(x) for x in legend],
                           prompt="Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d"))
     for it in items:
-        it["file"] = f"images/{it['id']}.png"
-        it["status"] = "drawn" if os.path.exists(os.path.join(IMG_DIR, it["id"] + ".png")) else "pending"
+        it["file"] = f"images/{it['id']}.jpg" if it["kind"] == "3d-photo" else f"images/{it['id']}.png"
+        it["status"] = "drawn" if os.path.exists(os.path.join(ROOT, it["file"])) else "pending"
     with open(os.path.join(ROOT, "images.json"), "w", encoding="utf-8") as f:
         json.dump(items, f, ensure_ascii=False, indent=2)
     return {i["id"]: i for i in items}
@@ -164,7 +164,7 @@ def topic_html(t, catalog):
                     figno += 1
                     cap, legend = PHOTOS[pid]
                     lg = "".join(f'<li><span class="mk-s">{i}</span>{x}</li>' for i, x in enumerate(legend, 1))
-                    out.append(f'<figure class="fig3d"><div class="imgwrap"><img src="images/{pid}.png" alt=""></div>'
+                    out.append(f'<figure class="fig3d"><div class="imgwrap"><img src="images/{pid}.jpg" alt=""></div>'
                                f'<figcaption><b>3D · Fig {n}.{figno}</b> {cap}</figcaption>'
                                + (f'<ol class="lg3d">{lg}</ol>' if lg else '') + '</figure>')
                 out.append('</div>')

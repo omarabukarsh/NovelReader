@@ -448,5 +448,535 @@
     "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: One exam — One stitch with the needle without tying — then explain how you would tie it",
     "file": "images/sk_suture.png",
     "status": "drawn"
+  },
+  {
+    "id": "pvd3d_inspection",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Inspection of both lower limbs – patient lying flat, exposed from the groin to the toes.",
+    "legend": [
+      "Thigh – muscle wasting, scars",
+      "Shin – hair loss, shiny skin, pallor",
+      "Calf – muscle wasting / swelling",
+      "Gaiter area – ulcers, pigmentation",
+      "Between the toes – hidden ulcers",
+      "Heel – hidden ulcers",
+      "Medial knee / thigh – scars",
+      "Big toe – colour, nails, gangrene"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/pvd3d_inspection.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "pvd3d_pulses",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Where to feel the lower-limb pulses (order: femoral → popliteal → PT → DP) and where to test CRT.",
+    "legend": [
+      "Femoral – mid-inguinal point",
+      "Popliteal – back of the knee",
+      "Posterior tibial – behind the medial malleolus",
+      "Dorsalis pedis – lateral to extensor hallucis longus",
+      "Great toe – capillary refill time"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/pvd3d_pulses.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "pvd3d_femoral",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Femoral pulse – pads of the index and middle fingers at the mid-inguinal point.",
+    "legend": [
+      "Femoral pulse point"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/pvd3d_femoral.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "pvd3d_pt",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Posterior tibial pulse – fingertips just behind and below the medial malleolus.",
+    "legend": [
+      "Posterior tibial pulse point"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/pvd3d_pt.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "pvd3d_dp",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Dorsalis pedis pulse – index and middle fingertips on the dorsum, lateral to extensor hallucis longus.",
+    "legend": [
+      "Dorsalis pedis pulse point"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/pvd3d_dp.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "pvd3d_buerger",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Buerger’s test – raise the leg to 45° and watch the foot; then sit the patient up with the legs hanging (dependent rubor).",
+    "legend": [
+      "Foot – pallor on elevation (Buerger’s angle)"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/pvd3d_buerger.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "pvd3d_calf",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Calf circumference – measured 10 cm below the tibial tuberosity; compare both legs.",
+    "legend": [
+      "Tibial tuberosity",
+      "Tape 10 cm below it"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/pvd3d_calf.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "pvd3d_trendelenburg",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Trendelenburg / tourniquet test – leg elevated to empty the veins, tourniquet at the SFJ, then the patient stands.",
+    "legend": [
+      "Tourniquet (upper thigh)",
+      "Saphenofemoral junction (SFJ)",
+      "Great saphenous vein – medial knee & leg"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/pvd3d_trendelenburg.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "thy3d_inspection",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Local inspection – patient sitting, neck exposed to nipple level, examiner in front at the same level.",
+    "legend": [
+      "Thyroid lobe – swelling / mass (6S)",
+      "Midline high – thyroglossal sinus / cyst",
+      "Collar line – Kocher’s scar",
+      "Dilated veins"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/thy3d_inspection.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "thy3d_tests",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Special tests on inspection – arrows show the upward movement.",
+    "legend": [
+      "Swallowing test – thyroid swelling moves up",
+      "Tongue protrusion – thyroglossal cyst moves up"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/thy3d_tests.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "thy3d_front",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Palpation from the front (3T) – temperature, tenderness, then tracheal position with the index finger in the suprasternal notch.",
+    "legend": [
+      "Suprasternal notch – trachea central or deviated"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/thy3d_front.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "thy3d_palpation",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Palpation from behind – neck slightly flexed, both hands, pads of three fingers on each lobe.",
+    "legend": [
+      "Right lobe",
+      "Left lobe"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/thy3d_palpation.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "thy3d_nodes",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Cervical lymph nodes – examined from behind in this order.",
+    "legend": [
+      "Submental",
+      "Submandibular",
+      "Tonsillar",
+      "Pre-auricular",
+      "Post-auricular",
+      "Occipital",
+      "Anterior cervical (in front of SCM)",
+      "Posterior cervical (behind SCM)",
+      "Supraclavicular"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/thy3d_nodes.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "thy3d_general",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Fine tremor – arms outstretched, sheet of paper on the dorsum of the hands.",
+    "legend": [
+      "Paper on the hands – trembles in hyperthyroidism"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/thy3d_general.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "git3d_general",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "General GIT examination – where to look, in the channel’s order.",
+    "legend": [
+      "Hands",
+      "Eyes – jaundice, pallor, xanthelasma",
+      "Mouth",
+      "Left supraclavicular – Virchow’s node",
+      "Chest – spider naevi, gynaecomastia",
+      "Abdomen – ascites, dilated veins",
+      "Groin – nodes, hernia",
+      "Lower limb – oedema, purpura, ulcers"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/git3d_general.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "git3d_asterixis",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Flapping tremor – arms outstretched, wrists dorsiflexed, fingers spread; watch the hands.",
+    "legend": [
+      "Wrist dorsiflexed – flapping = hepatic encephalopathy"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/git3d_asterixis.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "git3d_regions",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "The nine abdominal regions.",
+    "legend": [
+      "Right hypochondrium",
+      "Epigastrium",
+      "Left hypochondrium",
+      "Right lumbar",
+      "Umbilical",
+      "Left lumbar",
+      "Right iliac fossa",
+      "Suprapubic",
+      "Left iliac fossa"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/git3d_regions.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "git3d_superficial",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Superficial palpation – flat hand, start in the right iliac fossa and go through all regions, watching the face.",
+    "legend": [
+      "Start – right iliac fossa"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/git3d_superficial.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "git3d_liver",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Liver – start in the right iliac fossa and move up with each breath in, up to the costal margin.",
+    "legend": [
+      "Start – right iliac fossa",
+      "Right costal margin"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/git3d_liver.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "git3d_spleen",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Spleen – from the right iliac fossa diagonally toward the left hypochondrium.",
+    "legend": [
+      "Start – right iliac fossa",
+      "Left costal margin"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/git3d_spleen.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "git3d_kidney",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Kidney – bimanual palpation: one hand behind the loin pushes up, the other on the front feels (ballottement).",
+    "legend": [
+      "Anterior hand – feels",
+      "Posterior hand – pushes up"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/git3d_kidney.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "git3d_shifting",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Shifting dullness – percuss from the umbilicus to the flank; at the dull point keep the finger, roll the patient, re-percuss.",
+    "legend": [
+      "Start – umbilicus (tympanic)",
+      "Flank – dull"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/git3d_shifting.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "git3d_auscultation",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Auscultation sites (channel).",
+    "legend": [
+      "Bowel sounds – right iliac fossa",
+      "Aortic bruit – epigastrium, midline",
+      "Right renal bruit – 2–3 cm above & lateral to umbilicus",
+      "Left renal bruit",
+      "Right iliac bruit – above & medial to ASIS",
+      "Left iliac bruit",
+      "Venous hum – around the umbilicus"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/git3d_auscultation.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "git3d_pr",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "PR examination – left lateral (Sims) position, knees flexed toward the chest, buttocks at the edge of the couch.",
+    "legend": [
+      "Anus – inspect, then digital examination"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/git3d_pr.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "uro3d_renal_angle",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Renal angle – patient sitting, leaning slightly forward; between the 12th rib and the vertebral column.",
+    "legend": [
+      "Right renal angle",
+      "Left renal angle",
+      "12th rib"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/uro3d_renal_angle.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "lump3d_inspection",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Lump – inspection: site, size, shape, surface, skin over it.",
+    "legend": [
+      "Surface / skin over the lump",
+      "Edge",
+      "Edge – measure the size between the edges"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/lump3d_inspection.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "lump3d_fluctuation",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Fluctuation test – two fingers fix the lump on opposite sides, the other index finger presses the centre.",
+    "legend": [
+      "Press the centre",
+      "Fixing finger – pushed outwards if fluid",
+      "Fixing finger – pushed outwards if fluid"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/lump3d_fluctuation.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "lump3d_transillum",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Transillumination – torch on the side of the lump; clear fluid lights up.",
+    "legend": [
+      "Lump – glows",
+      "Torch"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/lump3d_transillum.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "ulcer3d_inspection",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Ulcer – local inspection (venous ulcer, medial lower leg).",
+    "legend": [
+      "Floor / base",
+      "Edge",
+      "Surrounding skin – pigmentation, redness",
+      "Site – medial lower leg"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/ulcer3d_inspection.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "ulcer3d_palpation",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Ulcer palpation – wash hands, wear gloves, finger on the edge and base.",
+    "legend": [
+      "Edge – feel the edge and base"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/ulcer3d_palpation.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "breast3d_positions",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Inspection positions – arms by the sides · hands behind the head · hands pressed on the waist, leaning forward.",
+    "legend": [],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/breast3d_positions.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "breast3d_palpation",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Palpation – supine, hand behind the head, finger pads in circles, all quadrants + axillary tail; normal breast first.",
+    "legend": [
+      "Upper outer quadrant",
+      "Upper inner quadrant",
+      "Lower outer quadrant",
+      "Lower inner quadrant",
+      "Axillary tail",
+      "Nipple-areola"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/breast3d_palpation.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "df3d_inspection",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Inspection of the foot – soles, heels and between the toes (hidden ulcers, fungal infection).",
+    "legend": [
+      "Heel",
+      "Sole – metatarsal heads, callus",
+      "Between the toes"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/df3d_inspection.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "df3d_sole",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Monofilament / pressure sites on the sole.",
+    "legend": [
+      "Plantar big toe",
+      "1st metatarsal head",
+      "3rd metatarsal head",
+      "5th metatarsal head",
+      "Heel"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/df3d_sole.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "df3d_monofilament",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Monofilament test – filament perpendicular to the skin until it bends; patient’s eyes closed.",
+    "legend": [
+      "1st metatarsal head"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/df3d_monofilament.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "df3d_vibration",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Vibration sense – 128 Hz tuning fork on the base of the big toe.",
+    "legend": [
+      "Base of the big toe"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/df3d_vibration.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "df3d_dressing",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Wound cleaning – sterile gauze in sterile forceps, from the centre to the periphery, new gauze each time.",
+    "legend": [
+      "Wound centre → periphery"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/df3d_dressing.jpg",
+    "status": "drawn"
+  },
+  {
+    "id": "sk3d_suture",
+    "topic": null,
+    "kind": "3d-photo",
+    "caption": "Simple interrupted sutures on a skin pad.",
+    "legend": [
+      "Bite 3–5 mm from the wound edge",
+      "Knot placed to one side",
+      "Spacing 5–10 mm",
+      "Needle enters the skin at 90°"
+    ],
+    "prompt": "Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d",
+    "file": "images/sk3d_suture.jpg",
+    "status": "drawn"
   }
 ]

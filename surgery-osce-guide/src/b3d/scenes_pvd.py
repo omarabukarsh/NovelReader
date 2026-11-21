@@ -62,11 +62,11 @@ def pvd_popliteal():
     knee = P["knee"]
     pp, n = surf(ob, knee + Vector((0, 0.0, -0.005)), Vector((0, 0.25, -1)), back=0.12)
     place_hand("right", "tips", pp + Vector((-0.012, 0, 0.003)), finger_dir=(0.78, 0.30, -0.55), palm_dir=(0.8, 0, 0.6),
-               tip="middle-finger-tip", sleeve_len=0.28)
+               tip="middle-finger-tip", sleeve_len=0.08)
     place_hand("left", "tips", pp + Vector((0.012, 0, 0.003)), finger_dir=(-0.78, 0.30, -0.55), palm_dir=(-0.8, 0, 0.6),
-               tip="middle-finger-tip", sleeve_len=0.28)
-    camera(pp + Vector((-0.56, -0.08, 0.10)), pp + Vector((0, 0, 0.03)), 40)
-    pin(1, pp); pin(2, P["tt"])
+               tip="middle-finger-tip", sleeve_len=0.08)
+    camera(pp + Vector((-0.55, -0.12, -0.03)), pp + Vector((0, 0, 0.03)), 40)
+    pin(1, pp)
     return {}
 
 
