@@ -9,12 +9,12 @@ Histories  = list of channel post ids (Arabic question scripts) rendered verbati
 
 INTRO = lambda expose, position, extra=(): ("Introduction", "", [
     ("Wash hands", ""),
-    ("Introduce yourself", "Marks in every station — never skip it"),
+    ("Introduce yourself", "Has a mark in every station"),
     ("Confirm name and age", ""),
     ("Explain the examination, obtain consent", ""),
     *extra,
     ("Exposure", expose),
-    ("Position", position),
+    *([("Position", position)] if position else []),
 ])
 
 TOPICS = [
@@ -307,7 +307,7 @@ dict(
     tables=[],
     quiz=[("Five stigmata of chronic liver disease?", "Spider naevi, palmar erythema, jaundice, gynaecomastia, clubbing / leukonychia"),
           ("Extra-intestinal skin manifestations of IBD?", "Erythema nodosum, pyoderma gangrenosum, aphthous oral ulcers"),
-          ("Causes of generalised abdominal distension?", "The Fs"), ("Definition of odynophagia?", ""),
+          ("Causes of generalised abdominal distension?", "4Fs"), ("Definition of odynophagia?", ""),
           ("Definition of haematochezia?", ""), ("Causes of upper (epigastric) abdominal pain?", ""),
           ("Other organs to examine with lower GIT symptoms?", "")],
     tips=["In the general exam they may show a picture (e.g. clubbing) and ask what it is and its differential diagnosis."],
@@ -391,8 +391,7 @@ dict(
     tables=[],
     quiz=[("Normal liver span?", ""), ("Name the abdominal quadrants / regions.", ""),
           ("What do you do for a patient with mild ascites?", "Ultrasound")],
-    tips=["Before saying you would do PR and scrotal examination, say you would auscultate for bowel sounds and bruits.",
-          "In a liver-span station you may be asked whether to palpate the liver and spleen as well."],
+    tips=["Before saying you would do PR and scrotal examination, say you would auscultate for bowel sounds and bruits."],
     histories=[],
 ),
 # =====================================================================================
@@ -454,7 +453,7 @@ dict(
        "القرحة: افحص الأوعية الدموية أولاً ثم صِف القرحة: الموقع، الشكل، الحافة، القاع، القاعدة، الجلد المحيط.",
     checklists=[
         ("Lump examination", [
-            INTRO("Expose the lump adequately", "Comfortable; ask about pain before examining"),
+            INTRO("Expose the lump adequately", None, extra=[("Ask about pain before examination", "")]),
             ("Inspection", "from the end of the bed and close", [
                 ("Site, size, shape, surface", ""),
                 ("Skin", "Redness, ulceration, scars, dilated veins, punctum"),
@@ -482,7 +481,7 @@ dict(
         ], ["Full description (6–8 features)", "Skin changes (punctum, ulcer, veins)", "Fluctuation + transillumination",
             "Mobility over skin and deep structures", "Expansile vs transmitted", "Regional lymph nodes"]),
         ("Ulcer examination", [
-            INTRO("Expose the ulcer adequately", "Comfortable; ask about pain before touching"),
+            INTRO("Expose the ulcer adequately", None, extra=[("Ask about pain before touching", "")]),
             ("General inspection", "", [("Around the patient", "Walking aid, wheelchair, dressings, compression stockings, footwear")]),
             ("Local inspection", "", [
                 ("Site, number, size, shape", ""),
