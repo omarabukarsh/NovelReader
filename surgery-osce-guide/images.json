@@ -99,29 +99,11 @@
     "status": "drawn"
   },
   {
-    "id": "thy_tremor",
-    "topic": 2,
-    "kind": "step",
-    "caption": "Fine tremor — Arms out, sheet of paper on the hands",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Fine tremor — Arms out, sheet of paper on the hands",
-    "file": "images/thy_tremor.png",
-    "status": "drawn"
-  },
-  {
-    "id": "thy_lidlag",
-    "topic": 2,
-    "kind": "step",
-    "caption": "Lid lag & eye movements — Follow finger downwards; H-pattern",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Lid lag & eye movements — Follow finger downwards; H-pattern",
-    "file": "images/thy_lidlag.png",
-    "status": "drawn"
-  },
-  {
     "id": "thy_swallow",
     "topic": 2,
     "kind": "step",
-    "caption": "Swallowing test — Sip of water → thyroid swelling rises",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Swallowing test — Sip of water → thyroid swelling rises",
+    "caption": "Swallowing test — If you suspect a mass, ask the patient to drink water — mass moves upward ↑ = high suspicion of thyroid gland",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Swallowing test — If you suspect a mass, ask the patient to drink water — mass moves upward ↑ = high suspicion of thyroid gland",
     "file": "images/thy_swallow.png",
     "status": "drawn"
   },
@@ -129,8 +111,8 @@
     "id": "thy_tongue",
     "topic": 2,
     "kind": "step",
-    "caption": "Tongue protrusion — Thyroglossal cyst moves up",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Tongue protrusion — Thyroglossal cyst moves up",
+    "caption": "Tongue protrusion — Ask to stick out the tongue: midline mass moves up = thyroglossal cyst; does not move = thyroid mass",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Tongue protrusion — Ask to stick out the tongue: midline mass moves up = thyroglossal cyst; does not move = thyroid mass",
     "file": "images/thy_tongue.png",
     "status": "drawn"
   },
@@ -138,8 +120,8 @@
     "id": "thy_palpation",
     "topic": 2,
     "kind": "step",
-    "caption": "Thyroid lobes & isthmus — Size, shape, consistency, surface, tenderness",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Thyroid lobes & isthmus — Size, shape, consistency, surface, tenderness",
+    "caption": "Both thyroid lobes — Assess both lobes",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Both thyroid lobes — Assess both lobes",
     "file": "images/thy_palpation.png",
     "status": "drawn"
   },
@@ -147,8 +129,8 @@
     "id": "thy_trachea",
     "topic": 2,
     "kind": "step",
-    "caption": "Trachea — Fingertip in the suprasternal notch: central?",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Trachea — Fingertip in the suprasternal notch: central?",
+    "caption": "Trachea — Central or deviated? Deviation happens with a large goitre",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Trachea — Central or deviated? Deviation happens with a large goitre",
     "file": "images/thy_trachea.png",
     "status": "drawn"
   },
@@ -156,8 +138,8 @@
     "id": "thy_nodes",
     "topic": 2,
     "kind": "step",
-    "caption": "Cervical lymph nodes — In a fixed order (see C)",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Cervical lymph nodes — In a fixed order (see C)",
+    "caption": "Sternocleidomastoid ★ landmark — Ask the patient to turn the head to the opposite side so SCM shows: anterior cervical nodes in front, posterior behind",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Sternocleidomastoid ★ landmark — Ask the patient to turn the head to the opposite side so SCM shows: anterior cervical nodes in front, posterior behind",
     "file": "images/thy_nodes.png",
     "status": "drawn"
   },
@@ -171,29 +153,11 @@
     "status": "drawn"
   },
   {
-    "id": "git1_hands",
-    "topic": 3,
-    "kind": "step",
-    "caption": "Nails — Clubbing (Schamroth window), leukonychia, koilonychia",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Nails — Clubbing (Schamroth window), leukonychia, koilonychia",
-    "file": "images/git1_hands.png",
-    "status": "drawn"
-  },
-  {
-    "id": "git1_asterixis",
-    "topic": 3,
-    "kind": "step",
-    "caption": "Asterixis — Arms out, wrists cocked back 15 s",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Asterixis — Arms out, wrists cocked back 15 s",
-    "file": "images/git1_asterixis.png",
-    "status": "drawn"
-  },
-  {
     "id": "git1_eyes",
     "topic": 3,
     "kind": "step",
-    "caption": "Eyes — Patient looks up, pull lower lid down: jaundice, pallor",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Eyes — Patient looks up, pull lower lid down: jaundice, pallor",
+    "caption": "Face — Xanthelasma, jaundice, pallor",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Face — Xanthelasma, jaundice, pallor",
     "file": "images/git1_eyes.png",
     "status": "drawn"
   },
@@ -201,9 +165,27 @@
     "id": "git1_virchow",
     "topic": 3,
     "kind": "step",
-    "caption": "Left supraclavicular fossa — Virchow’s node (Troisier’s sign)",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Left supraclavicular fossa — Virchow’s node (Troisier’s sign)",
+    "caption": "Virchow’s lymph node — Enlargement",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Virchow’s lymph node — Enlargement",
     "file": "images/git1_virchow.png",
+    "status": "drawn"
+  },
+  {
+    "id": "git1_hands",
+    "topic": 3,
+    "kind": "step",
+    "caption": "Clubbing — ",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Clubbing — ",
+    "file": "images/git1_hands.png",
+    "status": "drawn"
+  },
+  {
+    "id": "git1_asterixis",
+    "topic": 3,
+    "kind": "step",
+    "caption": "Flapping tremor (asterixis) — ",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Flapping tremor (asterixis) — ",
+    "file": "images/git1_asterixis.png",
     "status": "drawn"
   },
   {
@@ -219,8 +201,8 @@
     "id": "git2_light_palp",
     "topic": 4,
     "kind": "step",
-    "caption": "Superficial palpation — 9 regions — Laxity of abdomen, temperature / tenderness, superficial masses",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Superficial palpation — 9 regions — Laxity of abdomen, temperature / tenderness, superficial masses",
+    "caption": "Superficial palpation — Start from the right iliac fossa, at the same level as the abdomen; look at the face → superficial mass or tenderness",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Superficial palpation — Start from the right iliac fossa, at the same level as the abdomen; look at the face → superficial mass or tenderness",
     "file": "images/git2_light_palp.png",
     "status": "drawn"
   },
@@ -228,8 +210,8 @@
     "id": "git2_liver",
     "topic": 4,
     "kind": "step",
-    "caption": "Hepatomegaly — From the RIF upwards, with each breath in",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Hepatomegaly — From the RIF upwards, with each breath in",
+    "caption": "Liver — Start in the right iliac fossa, ask the patient to breathe; once you feel a mass → percussion",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Liver — Start in the right iliac fossa, ask the patient to breathe; once you feel a mass → percussion",
     "file": "images/git2_liver.png",
     "status": "drawn"
   },
@@ -237,26 +219,17 @@
     "id": "git2_spleen",
     "topic": 4,
     "kind": "step",
-    "caption": "Splenomegaly — From the RIF towards the left costal margin; roll onto right side",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Splenomegaly — From the RIF towards the left costal margin; roll onto right side",
+    "caption": "Spleen — From the right iliac fossa up to the left hypochondrium; ask the patient to roll, hold the costal margin, repeat",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Spleen — From the right iliac fossa up to the left hypochondrium; ask the patient to roll, hold the costal margin, repeat",
     "file": "images/git2_spleen.png",
-    "status": "drawn"
-  },
-  {
-    "id": "git2_kidney",
-    "topic": 4,
-    "kind": "step",
-    "caption": "Ballot kidneys — One hand in the loin pushes up, the other feels",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Ballot kidneys — One hand in the loin pushes up, the other feels",
-    "file": "images/git2_kidney.png",
     "status": "drawn"
   },
   {
     "id": "git2_shifting",
     "topic": 4,
     "kind": "step",
-    "caption": "Ascites — shifting dullness — Percuss to the flank, keep finger, roll patient, wait 30 s, re-percuss",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Ascites — shifting dullness — Percuss to the flank, keep finger, roll patient, wait 30 s, re-percuss",
+    "caption": "Ascites — shifting dullness — Percuss from the epigastrium to dullness, then down to the flank: resonant = normal. Roll the patient towards you: becomes resonant = shifting dullness",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Ascites — shifting dullness — Percuss from the epigastrium to dullness, then down to the flank: resonant = normal. Roll the patient towards you: becomes resonant = shifting dullness",
     "file": "images/git2_shifting.png",
     "status": "drawn"
   },
@@ -264,8 +237,8 @@
     "id": "git2_pr_position",
     "topic": 4,
     "kind": "step",
-    "caption": "Position — Left lateral, knees drawn up to chest, buttocks at the bed edge, covered",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Position — Left lateral, knees drawn up to chest, buttocks at the bed edge, covered",
+    "caption": "Position — Left lateral, knees fully flexed and pressed to the chest",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Position — Left lateral, knees fully flexed and pressed to the chest",
     "file": "images/git2_pr_position.png",
     "status": "drawn"
   },
@@ -282,8 +255,8 @@
     "id": "uro_testis_palp",
     "topic": 5,
     "kind": "step",
-    "caption": "Testis — Between thumb & first two fingers: size, consistency, surface, tenderness",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Testis — Between thumb & first two fingers: size, consistency, surface, tenderness",
+    "caption": "Both testes in the scrotum? — Index & thumb; hold the spermatic cord",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Both testes in the scrotum? — Index & thumb; hold the spermatic cord",
     "file": "images/uro_testis_palp.png",
     "status": "drawn"
   },
@@ -291,8 +264,8 @@
     "id": "uro_get_above",
     "topic": 5,
     "kind": "step",
-    "caption": "Get above the swelling? — No = inguinoscrotal hernia",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Get above the swelling? — No = inguinoscrotal hernia",
+    "caption": "Root of the spermatic cord — “Can I get above this?” — yes = problem in the scrotum; no = from the inguinal area",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Root of the spermatic cord — “Can I get above this?” — yes = problem in the scrotum; no = from the inguinal area",
     "file": "images/uro_get_above.png",
     "status": "drawn"
   },
@@ -300,8 +273,8 @@
     "id": "uro_transillum",
     "topic": 5,
     "kind": "step",
-    "caption": "Transillumination — Pen torch: hydrocele & epididymal cyst glow",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Transillumination — Pen torch: hydrocele & epididymal cyst glow",
+    "caption": "Transillumination — Dark room, X-ray paper & torch: lights up = pure fluid; no light = blood",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Transillumination — Dark room, X-ray paper & torch: lights up = pure fluid; no light = blood",
     "file": "images/uro_transillum.png",
     "status": "drawn"
   },
@@ -324,20 +297,38 @@
     "status": "drawn"
   },
   {
+    "id": "pvd_dp_pulse",
+    "topic": 6,
+    "kind": "step",
+    "caption": "Distal structures — Dorsalis pedis & posterior tibial arteries — especially if diabetic foot",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Distal structures — Dorsalis pedis & posterior tibial arteries — especially if diabetic foot",
+    "file": "images/pvd_dp_pulse.png",
+    "status": "drawn"
+  },
+  {
     "id": "lump_measure",
     "topic": 6,
     "kind": "step",
-    "caption": "Size — Measure in two dimensions",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Size — Measure in two dimensions",
+    "caption": "Size — ",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Size — ",
     "file": "images/lump_measure.png",
+    "status": "drawn"
+  },
+  {
+    "id": "lump_fixity",
+    "topic": 6,
+    "kind": "step",
+    "caption": "Attachment — To the skin or the underlying structure",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Attachment — To the skin or the underlying structure",
+    "file": "images/lump_fixity.png",
     "status": "drawn"
   },
   {
     "id": "lump_fluctuation",
     "topic": 6,
     "kind": "step",
-    "caption": "Fluctuation — Two fingers fix, the other presses — test in two planes",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Fluctuation — Two fingers fix, the other presses — test in two planes",
+    "caption": "Fluctuation — Fluid (cyst, abscess) or solid?",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Fluctuation — Fluid (cyst, abscess) or solid?",
     "file": "images/lump_fluctuation.png",
     "status": "drawn"
   },
@@ -345,18 +336,9 @@
     "id": "lump_transillum",
     "topic": 6,
     "kind": "step",
-    "caption": "Transillumination — Pen torch from the side, dark room",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Transillumination — Pen torch from the side, dark room",
+    "caption": "Transillumination — Clear fluid (cyst) — same as in the scrotum",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Transillumination — Clear fluid (cyst) — same as in the scrotum",
     "file": "images/lump_transillum.png",
-    "status": "drawn"
-  },
-  {
-    "id": "lump_fixity",
-    "topic": 6,
-    "kind": "step",
-    "caption": "Fixity — Move the skin over it; tense the muscle beneath",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Fixity — Move the skin over it; tense the muscle beneath",
-    "file": "images/lump_fixity.png",
     "status": "drawn"
   },
   {
@@ -372,8 +354,8 @@
     "id": "breast_positions",
     "topic": 7,
     "kind": "step",
-    "caption": "Positions — Arms by sides → hands pressed on hips → arms raised → leaning forward",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Positions — Arms by sides → hands pressed on hips → arms raised → leaning forward",
+    "caption": "Hands raised above the head — Then describe the mass: site (quadrant), size, shape, skin surface, ulcer, colour change",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Hands raised above the head — Then describe the mass: site (quadrant), size, shape, skin surface, ulcer, colour change",
     "file": "images/breast_positions.png",
     "status": "drawn"
   },
@@ -381,8 +363,8 @@
     "id": "breast_palpation",
     "topic": 7,
     "kind": "step",
-    "caption": "All four quadrants — Flat pads of the middle three fingers, small circles",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: All four quadrants — Flat pads of the middle three fingers, small circles",
+    "caption": "All quadrants, both sides — Three fingers moving in circles",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: All quadrants, both sides — Three fingers moving in circles",
     "file": "images/breast_palpation.png",
     "status": "drawn"
   },
@@ -390,8 +372,8 @@
     "id": "breast_axilla",
     "topic": 7,
     "kind": "step",
-    "caption": "Axillary — 5 groups — Support the patient’s arm; apical, anterior, posterior, medial, lateral",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Axillary — 5 groups — Support the patient’s arm; apical, anterior, posterior, medial, lateral",
+    "caption": "Axillary nodes in order — Anterior axillary fold → posterior axillary fold (circular motion) → central → apical → lateral",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Axillary nodes in order — Anterior axillary fold → posterior axillary fold (circular motion) → central → apical → lateral",
     "file": "images/breast_axilla.png",
     "status": "drawn"
   },
@@ -405,29 +387,47 @@
     "status": "drawn"
   },
   {
-    "id": "df_monofilament",
+    "id": "pvd_pt_pulse",
     "topic": 8,
     "kind": "step",
-    "caption": "10 g monofilament — Show on sternum first; eyes closed; press until it bends, 1–2 s",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: 10 g monofilament — Show on sternum first; eyes closed; press until it bends, 1–2 s",
-    "file": "images/df_monofilament.png",
+    "caption": "Anterior & posterior tibial arteries — ",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Anterior & posterior tibial arteries — ",
+    "file": "images/pvd_pt_pulse.png",
+    "status": "drawn"
+  },
+  {
+    "id": "pvd_dp_pulse",
+    "topic": 8,
+    "kind": "step",
+    "caption": "Dorsalis pedis — Lateral to extensor hallucis longus",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Dorsalis pedis — Lateral to extensor hallucis longus",
+    "file": "images/pvd_dp_pulse.png",
     "status": "drawn"
   },
   {
     "id": "df_tuning_fork",
     "topic": 8,
     "kind": "step",
-    "caption": "Vibration — 128 Hz tuning fork on the big-toe distal phalanx",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Vibration — 128 Hz tuning fork on the big-toe distal phalanx",
+    "caption": "Vibration — ",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Vibration — ",
     "file": "images/df_tuning_fork.png",
+    "status": "drawn"
+  },
+  {
+    "id": "df_monofilament",
+    "topic": 8,
+    "kind": "step",
+    "caption": "Monofilament test — Sensory test of the sole: a wire is touched on the pressure areas — does the patient feel it?",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Monofilament test — Sensory test of the sole: a wire is touched on the pressure areas — does the patient feel it?",
+    "file": "images/df_monofilament.png",
     "status": "drawn"
   },
   {
     "id": "df_cleaning",
     "topic": 8,
     "kind": "step",
-    "caption": "Clean — Saline gauze from clean to dirty (centre outwards)",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Clean — Saline gauze from clean to dirty (centre outwards)",
+    "caption": "Clean with sterile gauze — From the centre outwards, distal → proximal; a new gauze each time; then the skin around",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Clean with sterile gauze — From the centre outwards, distal → proximal; a new gauze each time; then the skin around",
     "file": "images/df_cleaning.png",
     "status": "drawn"
   },
@@ -435,8 +435,8 @@
     "id": "df_dressing",
     "topic": 8,
     "kind": "step",
-    "caption": "Dress & secure — Right dressing; not too tight; off-loading",
-    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Dress & secure — Right dressing; not too tight; off-loading",
+    "caption": "Put the plaster — Write the date & time",
+    "prompt": "Clean digital medical line-art illustration for an OSCE clinical-skills textbook. Dark-brown outlines of varying thickness, flat skin colour with soft cel shading. Patient in a light-blue hospital gown on a dark-blue examination couch; examiner shown only as hands in light-blue nitrile gloves with white coat sleeves. Plain white background. Modest and professional, intimate areas covered or not shown. Anatomically accurate hands and body. No text, letters, labels or arrows. Scene: Put the plaster — Write the date & time",
     "file": "images/df_dressing.png",
     "status": "drawn"
   },

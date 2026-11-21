@@ -13,6 +13,22 @@ from checklists_b import TOPICS_B
 from checklists_c import TOPICS_C
 
 TOPICS = TOPICS_A + TOPICS_B + TOPICS_C
+from checklists_notes import NOTES, KEEP_STD
+
+
+def merge_notes(t):
+    """Checklists from the lecture notes replace the standard ones; uncovered standard ones stay, labelled."""
+    old = t["checklists"]
+    std = [(re.sub(r"^[A-Z]\. ", "", old[i][0]), old[i][1], "std") for i in KEEP_STD.get(t["id"], range(len(old)))]
+    notes = [(c[0], c[1], "notes") for c in NOTES.get(t["id"], [])]
+    hist = [c for c in std if "istory" in c[0]]
+    rest = [c for c in std if "istory" not in c[0]]
+    allc = hist + notes + rest
+    t["checklists"] = [(f"{chr(65 + i)}. {c[0]}", c[1], c[2]) for i, c in enumerate(allc)]
+
+
+for _t in TOPICS:
+    merge_notes(_t)
 IMG_DIR = os.path.join(ROOT, "images")
 SVG_DIR = os.path.join(SRC, "svg")
 BUILD = os.path.join(ROOT, "build")
@@ -46,8 +62,8 @@ def render_svgs():
 def topic_figures(t):
     """(image id, caption) for every checklist item that has an illustration, in order."""
     out = []
-    for _, phases in t["checklists"]:
-        for _, _, items in phases:
+    for ck in t["checklists"]:
+        for _, _, items in ck[1]:
             for it in items:
                 if len(it) > 2 and it[2]:
                     out.append((it[2], f"{it[0]} — {it[1]}"))
@@ -109,8 +125,12 @@ def topic_html(t, catalog):
            '<h2><span>1</span>OSCE checklist</h2>']
     figno = 0
     cols = ('<colgroup><col class="c-n"><col class="c-s"><col class="c-h"><col class="c-b"><col class="c-b"><col class="c-b"></colgroup>')
-    for ctitle, phases in t["checklists"]:
-        out.append(f'<div class="ck"><h3 class="ck-t">{ctitle}</h3>')
+    for ck in t["checklists"]:
+        ctitle, phases = ck[0], ck[1]
+        src = ck[2] if len(ck) > 2 else "std"
+        tag = ('<span class="src notes">from your lecture notes</span>' if src == "notes"
+               else '<span class="src std">standard version — not in your notes</span>')
+        out.append(f'<div class="ck {src}"><h3 class="ck-t">{ctitle} {tag}</h3>')
         step = 0
         for pi, (phase, pnote, items) in enumerate(phases):
             count = "" if phase in ("HELP", "End of station") or len(items) < 2 else f' <em>{len(items)} things</em>'
@@ -177,9 +197,10 @@ def page_html(catalog, pages=None):
     tocs = (f'<section class="toc"><h1>Contents</h1><ol>{toc}</ol>'
             f'<div class="howto"><h3>How every topic is organised</h3><ol>'
             f'<li><b>ملخص</b> – short Arabic summary</li>'
-            f'<li><b>OSCE checklist</b> – the whole station in marking order: HELP → Inspection → Palpation → Percussion → '
-            f'Auscultation → End. Each phase says how many things to do; each step says how and what you may find; '
-            f'the drawings sit right under the phase they show. Tick P / MP / F while you practise.</li>'
+            f'<li><b>OSCE checklist</b> – the station in the order your doctors taught it. Each phase says how many things to do; '
+            f'each step says how and what you may find; the drawings sit right under the phase they show. Tick P / MP / F while you practise. '
+            f'<span class="src notes">from your lecture notes</span> = written only from what the doctor said · '
+            f'<span class="src std">standard version</span> = topic not covered in your notes.</li>'
             f'<li><b>Inspection map</b> – numbered red markers + table</li><li><b>Key tables</b> – only the must-know ones</li></ol>'
             f'<p class="note">HELP = Hello (introduction &amp; consent) · Exposure · Lighting · Position (and ask about pain), then wash hands. '
             f'P = performed · MP = partially performed · F = failed.</p></div></section>')

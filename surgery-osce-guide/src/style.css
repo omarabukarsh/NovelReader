@@ -157,3 +157,9 @@ td.bx span{display:inline-block;width:3.8mm;height:3.8mm;border:1.3px solid var(
 .figrow figcaption{font-size:7.8pt}
 .links1{margin-top:4mm;font-size:8.6pt;border-top:1px dashed var(--gold);padding-top:2mm;break-inside:avoid}
 .links1 a{color:#9b5c00;font-weight:650}
+
+.src{display:inline-block;font-size:7.4pt;font-weight:650;border-radius:2mm;padding:.3mm 2mm;margin-left:2mm;vertical-align:middle}
+.src.notes{background:#2e9a51;color:#fff}
+.src.std{background:#e6e9ee;color:#5d6b7c}
+.ck.std .ck-t{background:#6b7a8c}
+.howto .src{margin-left:0}
