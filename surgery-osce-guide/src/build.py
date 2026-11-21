@@ -117,9 +117,15 @@ def topic_html(t, catalog):
     out.append('</div>')
     # 5 inspection map
     m = t["map"]
+    wide = False
+    pth = os.path.join(IMG_DIR, m["img"] + ".png")
+    if os.path.exists(pth):
+        from PIL import Image
+        w, h = Image.open(pth).size
+        wide = w > h * 1.1
     rows = "".join(f'<tr><td class="num"><span class="mk-s">{i}</span></td><td>{w}</td><td>{f}</td></tr>'
                    for i, (w, f) in enumerate(m["rows"], 1))
-    out.append(f'<div class="mapblock"><h2><span>4</span>Inspection map</h2><div class="map">'
+    out.append(f'<div class="mapblock"><h2><span>4</span>Inspection map</h2><div class="map{" wide" if wide else ""}">'
                f'{figure(m["img"], m["title"], "Map", catalog, m["markers"], "fig mapfig")}'
                f'<table class="maptbl"><thead><tr><th>#</th><th>Where to look</th><th>What you may find</th></tr></thead>'
                f'<tbody>{rows}</tbody></table></div></div>')
@@ -129,13 +135,14 @@ def topic_html(t, catalog):
     # 7 checklist
     rows = "".join(f'<tr><td class="num">{i}</td><td>{s}</td><td class="box"><span></span></td></tr>'
                    for i, s in enumerate(t["checklist"], 1))
+    out.append('<div class="endblock">')
     out.append(f'<div class="cl"><h2><span>6</span>OSCE checklist</h2><table class="check"><thead><tr><th>#</th>'
                f'<th>Step</th><th>✓</th></tr></thead><tbody>{rows}</tbody></table></div>')
     # 8 links
     lis = "".join(f'<li><a href="https://www.youtube.com/results?search_query={urllib.parse.quote_plus(q)}">▶ {lab}</a>'
                   f'<span class="q">YouTube search: “{q}”</span></li>' for lab, q in t["links"])
     out.append(f'<div class="links"><h2><span>7</span>Video links</h2><ul>{lis}</ul></div>')
-    out.append('</section>')
+    out.append('</div></section>')
     return "\n".join(out)
 
 

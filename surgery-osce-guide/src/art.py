@@ -24,7 +24,7 @@ def uid(prefix="c"):
 
 
 def part(d, fill, shade=(), light=(), lines=(), faint=(), weight=(), sw=3.0,
-         transform=None, shade_fill=None, light_fill=None, extra=""):
+         transform=None, shade_fill=None, light_fill=None, extra="", stroke=None):
     """Return SVG for one body part.
 
     d       : closed outline path
@@ -50,7 +50,7 @@ def part(d, fill, shade=(), light=(), lines=(), faint=(), weight=(), sw=3.0,
             f'stroke-linecap="round" stroke-linejoin="round"/>' for s in lines]
     out.append(extra)
     out.append('</g>')
-    out.append(f'<path d="{d}" fill="none" stroke="{INK}" stroke-width="{sw}" '
+    out.append(f'<path d="{stroke or d}" fill="none" stroke="{INK}" stroke-width="{sw}" '
                f'stroke-linejoin="round" stroke-linecap="round"/>')
     out += [f'<path d="{w}" fill="none" stroke="{INK}" stroke-width="{sw + 1.8}" '
             f'stroke-linecap="round"/>' for w in weight]
@@ -259,7 +259,8 @@ def hand_shape(fingers, thumb, wrist_u, wrist_r, ulnar_pts=(), thenar_pts=(),
         sh2 = offset_side(tch[1:], [x * .2 for x in tw[1:]], -ts)
         shade.append(smooth([*sh, *sh2[::-1]], t=.3))
     pts += list(thenar_pts) + [wrist_r]
-    return dict(d=smooth(pts, t=.5), shade=shade, light=light, lines=lines_, faint=faint, pts=pts)
+    return dict(d=smooth(pts, t=.5), d_open=smooth(pts, closed=False, t=.5), shade=shade, light=light,
+                lines=lines_, faint=faint, pts=pts)
 
 
 def poly_point(chain, s):
@@ -309,11 +310,202 @@ def tpath(d, fn):
     return " ".join(out)
 
 
-def affine(tx, ty, sc=1.0, rot=0.0, ox=0, oy=0, flip=False, sy=None):
+def affine(tx, ty, sc=1.0, rot=0.0, ox=0, oy=0, flip=False, sy=None, flipy=False):
     c, s = math.cos(math.radians(rot)), math.sin(math.radians(rot))
     sy = sc if sy is None else sy
     def fn(p):
         x, y = (p[0] - ox) * sc, (p[1] - oy) * sy
         if flip: x = -x
+        if flipy: y = -y
         return (tx + x * c - y * s, ty + x * s + y * c)
     return fn
+
+
+# ================================================================ hand pose library
+# Local frame: RIGHT hand, dorsal view, wrist centre at (0,0), fingers toward +x, thumb toward -y.
+_MCP = dict(little=((92, 34), 8), ring=((101, 13), 3), middle=((104, -9), 0), index=((99, -31), -5))
+_LEN = dict(little=[38, 22, 18], ring=[46, 28, 21], middle=[50, 31, 22], index=[46, 27, 20])
+_WID = dict(little=[26, 24, 21, 19], ring=[30, 28, 25, 22], middle=[33, 31, 27, 24], index=[31, 29, 26, 23])
+ORDER = ["little", "ring", "middle", "index"]
+
+
+def _dir(a):
+    return (math.cos(math.radians(a)), math.sin(math.radians(a)))
+
+
+def fchain(name, flex=(0, 0, 0), dang=0, curl=(0, 0, 0), minc=.16):
+    (p, a), L = _MCP[name], _LEN[name]
+    a += dang
+    pts, cum = [p], 0
+    for l, f, c in zip(L, flex, curl):
+        cum += f; a += c
+        p = add(p, _dir(a), l * max(math.cos(math.radians(cum)), minc))
+        pts.append(p)
+    return pts
+
+
+def thumb_chain(angles=(-40, -30, -25), lens=(44, 32, 26), flex=(0, 0, 0), cmc=(30, -34)):
+    pts, p = [cmc], cmc
+    for a, l, f in zip(angles, lens, flex):
+        p = add(p, _dir(a), l * max(math.cos(math.radians(f)), .2))
+        pts.append(p)
+    return pts
+
+
+POSES = {
+    # name: (finger flex per finger {name: (flex, dang)}, thumb kwargs)
+    "flat":   ({n: ((4, 4, 2), 0) for n in ORDER}, dict(angles=(-22, -14, -10))),
+    "press2": ({"index": ((18, 36, 18), 2), "middle": ((22, 40, 18), 0), "ring": ((48, 70, 40), 0), "little": ((54, 74, 42), 0)},
+               dict(angles=(-38, -28, -22))),
+    "tips":   ({n: ((24, 42, 16), 0) for n in ORDER}, dict(angles=(-42, -32, -26))),
+    "pinch":  ({"index": ((28, 52, 26), -10), "middle": ((44, 66, 34), -2), "ring": ((52, 74, 40), 0), "little": ((56, 76, 42), 2)},
+               dict(angles=(-30, -12, 8), lens=(42, 30, 24))),
+    "fist":   ({n: ((82, 96, 60), 0) for n in ORDER}, dict(angles=(-10, 12, 30), lens=(40, 28, 22))),
+    "thumb":  ({n: ((80, 95, 60), 0) for n in ORDER}, dict(angles=(-24, -6, 4), lens=(44, 34, 28))),
+    "grip":   ({n: ((52, 78, 40), 0) for n in ORDER}, dict(angles=(-30, -4, 16), lens=(44, 32, 26))),
+    "spread": ({"index": ((4, 4, 2), -12), "middle": ((4, 4, 2), -2), "ring": ((4, 4, 2), 8), "little": ((4, 4, 2), 18)},
+               dict(angles=(-55, -45, -40))),
+    "vee":    ({"index": ((10, 14, 6), -11), "middle": ((10, 14, 6), 9), "ring": ((74, 92, 50), 0), "little": ((76, 92, 50), 0)},
+               dict(angles=(-14, 6, 22), lens=(40, 28, 22))),
+    "point":  ({"index": ((6, 8, 4), 0), "middle": ((70, 90, 50), 0), "ring": ((74, 92, 50), 0), "little": ((76, 92, 50), 0)},
+               dict(angles=(-14, 6, 22), lens=(40, 28, 22))),
+}
+
+
+def pose_hand(name, thumb=True, wrist_ext=26):
+    fl, tk = POSES[name]
+    fingers = [Finger(fchain(n, *fl[n]), _WID[n]) for n in ORDER]
+    th = Finger(thumb_chain(**tk), [44, 36, 31, 27], nail_side=.1) if thumb else None
+    return hand_shape(fingers, th, (-wrist_ext, 38), (-wrist_ext, -38),
+                      ulnar_pts=[(44, 44), (78, 43)], thenar_pts=[(14, -50)], web=18)
+
+
+def place(h, x, y, ang=0, sc=1.0, flipy=False):
+    fn = affine(x, y, sc, ang, flipy=flipy)
+    T = lambda d: tpath(d, fn)
+    return {k: (T(v) if isinstance(v, str) else [T(s) for s in v]) for k, v in h.items() if k != "pts"}
+
+
+def sleeve_local(length=230, w0=41, w1=52, cuff=True):
+    d = (f"M 6 {-w0} C -60 {-w0 - 4} {-length + 40} {-w1} {-length} {-w1 - 2} L {-length} {w1 + 2} "
+         f"C {-length + 40} {w1} -60 {w0 + 4} 6 {w0} C 12 {w0 * .4} 12 {-w0 * .4} 6 {-w0} Z")
+    shade = [f"M -{length} {w1 * .45} L 6 {w0 * .5} L 6 {w0 + 6} L -{length} {w1 + 6} Z"]
+    lines_ = [f"M -20 {-w0 + 4} C -14 {-w0 * .3} -14 {w0 * .3} -20 {w0 - 4}",
+              f"M -{length * .45} {-w1 * .9} C -{length * .4} {-w1 * .3} -{length * .5} {w1 * .2} -{length * .42} {w1 * .7}"]
+    return dict(d=d, shade=shade, lines=lines_)
+
+
+def forearm_local(length=220, w0=34, w1=44):
+    d = (f"M 10 {-w0} C -60 {-w0 - 2} {-length + 50} {-w1} {-length} {-w1} L {-length} {w1} "
+         f"C {-length + 50} {w1} -60 {w0 + 2} 10 {w0} Z")
+    st = f"M 10 {-w0} C -60 {-w0 - 2} {-length + 50} {-w1} {-length} {-w1} M {-length} {w1} C {-length + 50} {w1} -60 {w0 + 2} 10 {w0}"
+    shade = [f"M -{length} {w1 * .35} L 10 {w0 * .35} L 10 {w0 + 4} L -{length} {w1 + 4} Z"]
+    return dict(d=d, stroke=st, shade=shade, faint=[f"M -40 -6 C -90 -4 -150 -2 -{length - 20} 0"])
+
+
+PALM_CREASES = ["M 22 -36 C 40 -20 52 0 54 24", "M 46 -38 C 62 -26 78 -16 92 -14",
+                "M 58 34 C 70 22 84 12 96 4", "M 30 30 C 20 20 14 10 12 0"]
+
+
+def hand_svg(pose, x, y, ang=0, sc=1.0, left=False, glove=True, arm="coat", arm_len=230, extra_lines=(), palmar=False,
+             thumb=True, open_wrist=False):
+    """Complete hand + sleeve / forearm, placed. left=True mirrors (left hand, or a right hand seen palm-up)."""
+    hl = pose_hand(pose, thumb=thumb)
+    if palmar:
+        hl["faint"] = PALM_CREASES
+    h = place(hl, x, y, ang, sc, flipy=left)
+    out = []
+    fill = GLOVE if glove else SKIN
+    if arm == "skin":
+        fa = place(forearm_local(arm_len), x, y, ang, sc, flipy=left)
+        out.append(part(fa["d"], SKIN, fa["shade"], [], [], fa["faint"], [], stroke=fa["stroke"]))
+        out.append(part(h["d"], fill, h["shade"], h["light"], h["lines"] + list(extra_lines), h["faint"], [], stroke=h["d_open"]))
+    else:
+        out.append(part(h["d"], fill, h["shade"], h["light"], h["lines"] + list(extra_lines), h["faint"], [],
+                        stroke=h["d_open"] if open_wrist else None))
+        if arm == "coat":
+            s = place(sleeve_local(arm_len), x, y, ang, sc, flipy=left)
+            out.append(part(s["d"], COAT, s["shade"], [], s["lines"], [], []))
+    return "\n".join(out)
+
+
+# ---------------------------------------------------------------- side-view pen grip (radial view, right hand)
+# wrist at (0,0), fingers toward +x, dorsum up. Tool passes between thumb pad and index pad near (156, 0).
+PEN_BODY = [(-30, -30), (0, -29), (40, -34), (74, -38), (92, -37), (112, -31), (128, -26), (146, -18),
+            (160, -9), (165, -1), (160, 5), (148, 2), (132, -4), (122, -4), (116, 6), (122, 14), (130, 22),
+            (126, 32), (112, 36), (100, 34), (84, 40), (60, 40), (30, 34), (0, 30), (-30, 30)]
+PEN_THUMB = [(46, 4), (70, -6), (98, -4), (122, -2), (142, 0), (154, 5), (156, 13), (148, 18), (128, 20),
+             (104, 24), (80, 30), (56, 34), (40, 24)]
+
+
+def pen_hand(x, y, ang=0, sc=1.0, left=False, glove=True, arm="coat", arm_len=230):
+    fn = affine(x, y, sc, ang, flipy=left)
+    T = lambda d: tpath(d, fn)
+    fill = GLOVE if glove else SKIN
+    body = smooth(PEN_BODY[1:-1] + [(-30, 30), (-30, -30)], t=.5)
+    body_open = smooth(PEN_BODY, closed=False, t=.5)
+    th = smooth(PEN_THUMB, t=.5)
+    out = []
+    shade_b = [smooth([(-30, 18), (30, 22), (60, 28), (84, 30), (100, 28), (112, 30), (126, 32), (112, 40), (60, 44), (-30, 34)], t=.4),
+               smooth([(132, -2), (146, -6), (158, -2), (160, 5), (148, 4)], t=.4)]
+    light_b = [smooth([(10, -24), (60, -30), (92, -32), (126, -22), (150, -12), (126, -16), (90, -26), (50, -24)], t=.4)]
+    lines_b = ["M 112 -31 C 116 -26 118 -20 117 -14", "M 146 -18 C 148 -12 148 -8 146 -4",
+               "M 120 10 C 116 14 116 20 122 24", "M 92 -37 C 96 -32 96 -26 92 -22"]
+    faint_b = ["M 150 -14 C 156 -14 160 -10 160 -6 C 154 -6 150 -8 150 -14 Z", "M 20 -20 C 50 -22 80 -26 104 -30"]
+    lines_t = ["M 118 0 C 116 8 116 14 120 20", "M 70 0 C 80 10 84 18 82 28"]
+    faint_t = ["M 140 4 C 146 3 152 6 152 10 C 146 11 141 9 140 4 Z"]
+    shade_t = [smooth([(56, 30), (90, 26), (128, 18), (148, 16), (128, 22), (90, 32), (56, 36)], t=.4)]
+    if arm == "skin":
+        fa = forearm_local(arm_len)
+        out.append(part(T(fa["d"]), SKIN, [T(s) for s in fa["shade"]], [], [], [T(s) for s in fa["faint"]], [], stroke=T(fa["stroke"])))
+        out.append(part(T(body), fill, [T(s) for s in shade_b], [T(s) for s in light_b], [T(s) for s in lines_b], [T(s) for s in faint_b], [], stroke=T(body_open)))
+    else:
+        out.append(part(T(body), fill, [T(s) for s in shade_b], [T(s) for s in light_b], [T(s) for s in lines_b], [T(s) for s in faint_b], []))
+    thumb = part(T(th), fill, [T(s) for s in shade_t], [], [T(s) for s in lines_t], [T(s) for s in faint_t], [])
+    sleeve = ""
+    if arm == "coat":
+        s = sleeve_local(arm_len, 34, 46)
+        sleeve = part(T(s["d"]), COAT, [T(x) for x in s["shade"]], [], [T(x) for x in s["lines"]], [], [])
+    return "\n".join(out), thumb, sleeve
+
+
+def arrow(d, color="#167a8b", w=4, head=14, dash=None):
+    """Open path with an arrowhead at its end (drawn by code, no text)."""
+    nums = [float(v) for v in _re.findall(r"-?\d+\.?\d*", d)]
+    (x1, y1), (x2, y2) = (nums[-4], nums[-3]), (nums[-2], nums[-1])
+    a = math.atan2(y2 - y1, x2 - x1)
+    p1 = (x2 - head * math.cos(a - .45), y2 - head * math.sin(a - .45))
+    p2 = (x2 - head * math.cos(a + .45), y2 - head * math.sin(a + .45))
+    da = f' stroke-dasharray="{dash}"' if dash else ""
+    return (f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{w}" stroke-linecap="round"{da}/>'
+            f'<path d="M {p1[0]:.1f} {p1[1]:.1f} L {x2:.1f} {y2:.1f} L {p2[0]:.1f} {p2[1]:.1f}" fill="none" '
+            f'stroke="{color}" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round"/>')
+
+
+def pose_point(pose, what="index"):
+    """Local coordinates of a fingertip ('index','middle',...,'thumb') for a pose."""
+    fl, tk = POSES[pose]
+    if what == "thumb":
+        return thumb_chain(**tk)[-1]
+    if what == "mid2":   # between index and middle tips
+        return lerp(fchain("index", *fl["index"])[-1], fchain("middle", *fl["middle"])[-1], .5)
+    if what == "mid4":
+        return lerp(fchain("index", *fl["index"])[-1], fchain("little", *fl["little"])[-1], .5)
+    return fchain(what, *fl[what])[-1]
+
+
+def hand_at(pose, target, ang, sc=1.0, what="index", left=False, **kw):
+    lx, ly = pose_point(pose, what)
+    if left: ly = -ly
+    c, s = math.cos(math.radians(ang)), math.sin(math.radians(ang))
+    wx = target[0] - (lx * c - ly * s) * sc
+    wy = target[1] - (lx * s + ly * c) * sc
+    return hand_svg(pose, wx, wy, ang, sc, left=left, **kw)
+
+
+def pen_at(target, ang, sc=1.0, left=False, **kw):
+    """Place the pen-grip hand so the tool contact point (between thumb & index pads) lands on target."""
+    lx, ly = 152, 4
+    if left: ly = -ly
+    c, s = math.cos(math.radians(ang)), math.sin(math.radians(ang))
+    return pen_hand(target[0] - (lx * c - ly * s) * sc, target[1] - (lx * s + ly * c) * sc, ang, sc, left=left, **kw)
