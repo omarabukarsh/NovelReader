@@ -83,7 +83,7 @@ def female(V):
         for cx in (0.095, -0.095):
             g = math.exp(-((x - cx) ** 2 / (2 * 0.058 ** 2) + (z - 1.215) ** 2 / (2 * 0.050 ** 2)))
             if y < 0.0:
-                dy -= 0.085 * g
+                dy -= 0.10 * g
         # slight downward sag of the lower pole
         out.append((x, y + dy, z - 0.012 * (dy / -0.055 if dy else 0)))
     return out
@@ -253,7 +253,7 @@ def lights(target=(0, 0, 1), strength=1.0):
 def camera(loc, target, lens=45):
     bpy.ops.object.camera_add(location=loc); c = bpy.context.object
     d = Vector(target) - Vector(loc); c.rotation_euler = d.to_track_quat("-Z", "Y").to_euler()
-    c.data.lens = lens; bpy.context.scene.camera = c
+    c.data.lens = lens; c.data.clip_start = 0.005; bpy.context.scene.camera = c
     return c
 
 

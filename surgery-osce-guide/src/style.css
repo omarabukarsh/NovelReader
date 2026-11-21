@@ -171,3 +171,13 @@ td.bx span{display:inline-block;width:3.8mm;height:3.8mm;border:1.3px solid var(
 .hist-b{border:1px solid var(--line);border-top:none;padding:2mm 3.5mm;font-family:"Naskh",serif;font-size:9.6pt;line-height:1.7;text-align:right}
 .hist-b p{margin:.6mm 0}
 .hist-b b{color:var(--teal);font-family:"SansAr","Naskh",serif}
+
+/* ---------- 3D model photographs ---------- */
+.row3d{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm;margin:2.5mm 0 4mm;align-items:start}
+.fig3d{break-inside:avoid;page-break-inside:avoid;border:1px solid var(--line);border-radius:2.5mm;padding:1.5mm;background:#fbfcfd}
+.fig3d .imgwrap{border:none}
+.fig3d figcaption{font-size:8pt}
+.fig3d figcaption b{color:#fff;background:var(--teal);border-radius:1.5mm;padding:0 1.5mm;font-size:7.4pt}
+ol.lg3d{list-style:none;margin:1mm 0 0;padding:0;columns:2;column-gap:3mm;font-size:7.7pt;line-height:1.3}
+ol.lg3d li{break-inside:avoid;margin:.6mm 0;display:flex;gap:1.2mm;align-items:flex-start}
+ol.lg3d .mk-s{flex:none;width:4.2mm;height:4.2mm;font-size:6.8pt}

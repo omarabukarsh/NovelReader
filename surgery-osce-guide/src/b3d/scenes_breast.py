@@ -57,21 +57,18 @@ def breast_palpation():
     ob.data.materials[0] = MANIKIN()
     cloth(ob, ao, lambda x, y, z: 0.40 < z < 1.02 and not ARMS(x, y, z), name="skirt")
     lights((0, 0.2, 0.9))
-    R = lambda x, z: rest_front_supine(x, z, female)
-    best = None
-    for dx in [i * 0.004 for i in range(-6, 7)]:
-        for dz in [i * 0.004 for i in range(-8, 9)]:
-            p = R(-0.095 + dx, 1.215 + dz)
-            if best is None or p.z > best[0].z:
-                best = (p, -0.095 + dx, 1.215 + dz)
-    nip, nx, nz = best
-    liq = R(nx + 0.040, nz - 0.040)
+    down = Vector((0, 0, 1))
+    T = lambda x, y: surf(ob, Vector((x, y, COUCH_TOP + 0.1)), down, back=0.4)[0]
+    yb = SUP_Y0 + 1.215
+    nip = max((T(-0.095 + i * 0.004, yb + j * 0.004) for i in range(-7, 8) for j in range(-9, 10)), key=lambda p: p.z)
+    nx, ny = nip.x, nip.y
+    liq = T(nx + 0.042, ny - 0.045)
     place_hand("right", "flat", liq + Vector((0, 0, 0.004)), finger_dir=(0.10, 1, -0.25), palm_dir=(0, 0, -1), tip="middle-finger-tip")
-    over("dash", R(nx, nz + 0.085), R(nx, nz - 0.075))
-    over("dash", R(nx - 0.075, nz), R(nx + 0.075, nz))
+    over("dash", T(nx, ny + 0.085), T(nx, ny - 0.075))
+    over("dash", T(nx - 0.08, ny), T(nx + 0.075, ny))
     camera(nip + Vector((-0.04, -0.12, 0.50)), nip + Vector((0, 0.015, 0)), 40)
-    pin(1, R(nx - 0.042, nz + 0.042)); pin(2, R(nx + 0.042, nz + 0.042)); pin(3, R(nx - 0.042, nz - 0.042))
-    pin(4, R(nx + 0.042, nz - 0.042)); pin(5, R(nx - 0.085, nz + 0.075)); pin(6, nip)
+    pin(1, T(nx - 0.040, ny + 0.055)); pin(2, T(nx + 0.042, ny + 0.050)); pin(3, T(nx - 0.042, ny - 0.045))
+    pin(4, T(nx + 0.042, ny - 0.042)); pin(5, T(nx - 0.085, ny + 0.080)); pin(6, nip)
     return {}
 
 
@@ -84,17 +81,18 @@ def breast_axilla():
     cloth(ob, ao, lambda x, y, z: 0.40 < z < 1.02 and not ARMS(x, y, z), name="skirt")
     lights((-0.4, 0.2, 0.9))
     sh = bone_world(ao, "upperarm01.R"); el = bone_world(ao, "lowerarm01.R")
-    hollow = Vector((sh.x - 0.01, sh.y - 0.07, sh.z - 0.005))
-    up = Vector((0, 0, 1))
-    cen = ray(ob, Vector((sh.x - 0.035, sh.y - 0.075, sh.z + 0.25)), (0.25, 0, -1))[0]
-    ant = surf(ob, Vector((sh.x + 0.025, sh.y - 0.05, sh.z)), up, back=0.3)[0]
-    post = ray(ob, Vector((sh.x - 0.03, sh.y - 0.06, COUCH_TOP + 0.02)), (0.6, 0, 0.3))[0]
-    apx = ray(ob, Vector((sh.x - 0.02, sh.y - 0.005, sh.z + 0.25)), (0.15, 0.1, -1))[0]
-    lat = surf(ob, sh.lerp(el, 0.28) + Vector((0, -0.03, 0)), Vector((0, -0.4, 1)), back=0.2)[0]
-    camera(cen + Vector((-0.30, -0.42, 0.42)), cen + Vector((0.02, 0.0, -0.01)), 40)
+    chest = surf(ob, Vector((sh.x + 0.05, sh.y - 0.09, COUCH_TOP + 0.1)), Vector((0, 0, 1)), back=0.4)[0]
+    zm = (COUCH_TOP + chest.z) / 2
+    X = Vector((1, 0, 0))
+    cen = ray(ob, Vector((sh.x - 0.20, sh.y - 0.085, zm)), X)[0]
+    apx = ray(ob, Vector((sh.x - 0.20, sh.y - 0.035, zm + 0.01)), X)[0]
+    post = ray(ob, Vector((sh.x - 0.20, sh.y - 0.075, COUCH_TOP + 0.035)), X)[0]
+    ant = surf(ob, Vector((sh.x + 0.015, sh.y - 0.075, COUCH_TOP + 0.1)), Vector((0, 0, 1)), back=0.4)[0]
+    lat = ray(ob, Vector((sh.x - 0.08, sh.y - 0.16, zm)), (0, 1, 0))[0]
+    camera(cen + Vector((-0.50, -0.38, 0.30)), cen + Vector((-0.01, 0.01, 0.0)), 38)
     for i, p in enumerate([ant, post, cen, apx, lat], 1):
         pin(i, p)
     return {}
 
 
-SCENES = dict(breast3d_positions=breast_positions, breast3d_palpation=breast_palpation, breast3d_axilla=breast_axilla)
+SCENES = dict(breast3d_positions=breast_positions, breast3d_palpation=breast_palpation)

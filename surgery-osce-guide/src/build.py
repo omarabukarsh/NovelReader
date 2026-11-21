@@ -9,6 +9,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "src")
 sys.path.insert(0, SRC)
 from channel_content import TOPICS, HISTORY_TITLES
+from photos3d import PHOTOS, PLACE
 HISTORIES = json.load(open(os.path.join(SRC, "channel_histories.json"), encoding="utf-8"))
 IMG_DIR = os.path.join(ROOT, "images")
 SVG_DIR = os.path.join(SRC, "svg")
@@ -57,6 +58,9 @@ def write_catalog():
         for img, cap in topic_figures(t):
             items.append(dict(id=img, topic=t["num"], kind="step", caption=strip(cap),
                               prompt=f"{STYLE} Scene: {strip(cap)}"))
+    for pid, (cap, legend) in PHOTOS.items():
+        items.append(dict(id=pid, topic=None, kind="3d-photo", caption=strip(cap), legend=[strip(x) for x in legend],
+                          prompt="Blender Cycles render of a MakeHuman (CC0) body and WebXR generic hand (MIT); see src/b3d"))
     for it in items:
         it["file"] = f"images/{it['id']}.png"
         it["status"] = "drawn" if os.path.exists(os.path.join(IMG_DIR, it["id"] + ".png")) else "pending"
@@ -152,6 +156,17 @@ def topic_html(t, catalog):
                 out.append('<div class="figrow">')
                 for img, st, how, sn, fn in figs:
                     out.append(figure(img, f"<b>{st}</b> — {how}", f"Fig {n}.{fn} · step {sn}", catalog))
+                out.append('</div>')
+            ph3 = PLACE.get((t["id"], ci, phase), [])
+            if ph3:
+                out.append('<div class="row3d">')
+                for pid in ph3:
+                    figno += 1
+                    cap, legend = PHOTOS[pid]
+                    lg = "".join(f'<li><span class="mk-s">{i}</span>{x}</li>' for i, x in enumerate(legend, 1))
+                    out.append(f'<figure class="fig3d"><div class="imgwrap"><img src="images/{pid}.png" alt=""></div>'
+                               f'<figcaption><b>3D · Fig {n}.{figno}</b> {cap}</figcaption>'
+                               + (f'<ol class="lg3d">{lg}</ol>' if lg else '') + '</figure>')
                 out.append('</div>')
             out.append('</div>')
         if points:

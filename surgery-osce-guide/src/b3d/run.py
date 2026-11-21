@@ -32,7 +32,7 @@ for n in names:
             camera(c0 + off, c0, 40); render(os.path.join(out, f"{n}__{tag}.png"), 420, 320, 8)
         sc.camera = cam; cam.location, cam.rotation_euler = keep
     sc.render.film_transparent = True
-    render(os.path.join(out, n + ".png"), w, h, 16 if prev else 48)
+    render(os.path.join(out, n + ".png"), w, h, 16 if prev else 40)
     from PIL import Image
     im = Image.open(os.path.join(out, n + ".png")).convert("RGBA"); bg = Image.new("RGBA", im.size, (255, 255, 255, 255))
     Image.alpha_composite(bg, im).convert("RGB").save(os.path.join(out, n + ".png"))
