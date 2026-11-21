@@ -8,27 +8,8 @@ import json, os, re, subprocess, sys, html, urllib.parse
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "src")
 sys.path.insert(0, SRC)
-from checklists_a import TOPICS_A
-from checklists_b import TOPICS_B
-from checklists_c import TOPICS_C
-
-TOPICS = TOPICS_A + TOPICS_B + TOPICS_C
-from checklists_notes import NOTES, KEEP_STD
-
-
-def merge_notes(t):
-    """Checklists from the lecture notes replace the standard ones; uncovered standard ones stay, labelled."""
-    old = t["checklists"]
-    std = [(re.sub(r"^[A-Z]\. ", "", old[i][0]), old[i][1], "std") for i in KEEP_STD.get(t["id"], range(len(old)))]
-    notes = [(c[0], c[1], "notes") for c in NOTES.get(t["id"], [])]
-    hist = [c for c in std if "istory" in c[0]]
-    rest = [c for c in std if "istory" not in c[0]]
-    allc = hist + notes + rest
-    t["checklists"] = [(f"{chr(65 + i)}. {c[0]}", c[1], c[2]) for i, c in enumerate(allc)]
-
-
-for _t in TOPICS:
-    merge_notes(_t)
+from channel_content import TOPICS, HISTORY_TITLES
+HISTORIES = json.load(open(os.path.join(SRC, "channel_histories.json"), encoding="utf-8"))
 IMG_DIR = os.path.join(ROOT, "images")
 SVG_DIR = os.path.join(SRC, "svg")
 BUILD = os.path.join(ROOT, "build")
@@ -76,10 +57,6 @@ def write_catalog():
         for img, cap in topic_figures(t):
             items.append(dict(id=img, topic=t["num"], kind="step", caption=strip(cap),
                               prompt=f"{STYLE} Scene: {strip(cap)}"))
-        m = t["map"]
-        items.append(dict(id=m["img"], topic=t["num"], kind="inspection-map", caption=strip(m["title"]),
-                          prompt=f"{STYLE} Scene: {strip(m['title'])}; clear view of the whole area so numbered markers can be "
-                                 f"added later at: " + "; ".join(strip(r[0]) for r in m["rows"]) + "."))
     for it in items:
         it["file"] = f"images/{it['id']}.png"
         it["status"] = "drawn" if os.path.exists(os.path.join(IMG_DIR, it["id"] + ".png")) else "pending"
@@ -116,24 +93,45 @@ def table_html(tb):
             f'<tbody>{rows}</tbody></table>{note}</div>')
 
 
+def history_html(pid):
+    """Render a channel history script (Arabic) compactly: sections with questions run together."""
+    txt = HISTORIES[pid]
+    lines = [l.strip() for l in txt.splitlines() if l.strip()]
+    secs, cur, title = [], [], "الافتتاح"
+    for l in lines:
+        if "🐥" in l:
+            if cur:
+                secs.append((title, cur))
+            title, cur = l.replace("🐥", "").strip(" :"), []
+        else:
+            cur.append(html.escape(l))
+    if cur:
+        secs.append((title, cur))
+    body = "".join(f'<p><b>{html.escape(t)}:</b> {" ◦ ".join(q)}</p>' for t, q in secs)
+    return (f'<div class="hist"><h3 class="ck-t">{HISTORY_TITLES[pid]} <span class="src notes">channel script</span></h3>'
+            f'<div class="hist-b" dir="rtl" lang="ar">{body}</div></div>')
+
+
 def topic_html(t, catalog):
     n = t["num"]
+    sec = 0
+    def h2(title):
+        nonlocal sec
+        sec += 1
+        return f'<h2><span>{sec}</span>{title}</h2>'
     out = [f'<section class="topic" id="t{n}">',
            f'<header class="thead"><div class="kicker">TOPIC {n:02d}</div><h1>{t["title"]}</h1>'
            f'<p class="sub">{t["subtitle"]}</p></header>',
            f'<div class="ar-box" dir="rtl" lang="ar"><div class="ar-h">ملخص سريع</div><p>{t["ar"]}</p></div>',
-           '<h2><span>1</span>OSCE checklist</h2>']
+           h2("OSCE checklists")]
     figno = 0
     cols = ('<colgroup><col class="c-n"><col class="c-s"><col class="c-h"><col class="c-b"><col class="c-b"><col class="c-b"></colgroup>')
-    for ck in t["checklists"]:
-        ctitle, phases = ck[0], ck[1]
-        src = ck[2] if len(ck) > 2 else "std"
-        tag = ('<span class="src notes">from your lecture notes</span>' if src == "notes"
-               else '<span class="src std">standard version — not in your notes</span>')
-        out.append(f'<div class="ck {src}"><h3 class="ck-t">{ctitle} {tag}</h3>')
+    for ci, ck in enumerate(t["checklists"]):
+        ctitle, phases, points = ck[0], ck[1], ck[2]
+        out.append(f'<div class="ck"><h3 class="ck-t">{chr(65 + ci)}. {ctitle}</h3>')
         step = 0
         for pi, (phase, pnote, items) in enumerate(phases):
-            count = "" if phase in ("HELP", "End of station") or len(items) < 2 else f' <em>{len(items)} things</em>'
+            count = "" if phase in ("Introduction", "Completion", "Closure", "Preparation") or len(items) < 2 else f' <em>{len(items)} things</em>'
             pn = f' <span class="pnote">· {pnote}</span>' if pnote else ""
             rows, figs = "", []
             for it in items:
@@ -147,7 +145,7 @@ def topic_html(t, catalog):
                          f'<td class="bx"><span></span></td><td class="bx"><span></span></td><td class="bx"><span></span></td></tr>')
             head = ('<thead><tr><th>#</th><th>Step</th><th>How / what you may find</th><th>P</th><th>MP</th><th>F</th></tr></thead>'
                     if pi == 0 else "")
-            cls = "phase-block" + (" end" if phase == "End of station" else "") + (" help" if phase == "HELP" else "")
+            cls = "phase-block" + (" end" if phase in ("Completion", "Closure") else "") + (" help" if phase in ("Introduction", "Preparation") else "")
             out.append(f'<div class="{cls}"><table class="cktbl">{cols}{head}<tbody>'
                        f'<tr class="phase"><td colspan="6">{phase}{count}{pn}</td></tr>{rows}</tbody></table>')
             if figs:
@@ -156,26 +154,21 @@ def topic_html(t, catalog):
                     out.append(figure(img, f"<b>{st}</b> — {how}", f"Fig {n}.{fn} · step {sn}", catalog))
                 out.append('</div>')
             out.append('</div>')
+        if points:
+            out.append('<div class="pts"><b>★ Important OSCE points the examiner looks for:</b> ' +
+                       " · ".join(points) + '</div>')
         out.append('</div>')
-    # inspection map
-    m = t["map"]
-    wide = False
-    pth = os.path.join(IMG_DIR, m["img"] + ".png")
-    if os.path.exists(pth):
-        from PIL import Image
-        w, h = Image.open(pth).size
-        wide = w > h * 1.1
-    rows = "".join(f'<tr><td class="num"><span class="mk-s">{i}</span></td><td>{w}</td><td>{f}</td></tr>'
-                   for i, (w, f) in enumerate(m["rows"], 1))
-    out.append(f'<div class="mapblock"><h2><span>2</span>Inspection map</h2><div class="map{" wide" if wide else ""}">'
-               f'{figure(m["img"], m["title"], "Map", catalog, m["markers"], "fig mapfig")}'
-               f'<table class="maptbl"><thead><tr><th>#</th><th>Where to look</th><th>What you may find</th></tr></thead>'
-               f'<tbody>{rows}</tbody></table></div></div>')
-    out.append('<h2><span>3</span>Key tables</h2>')
-    out += [table_html(tb) for tb in t["tables"]]
-    lis = " · ".join(f'<a href="https://www.youtube.com/results?search_query={urllib.parse.quote_plus(q)}">▶ {lab}</a>'
-                     for lab, q in t["links"])
-    out.append(f'<div class="links1"><b>Videos (YouTube search):</b> {lis}</div>')
+    if t["tables"]:
+        out += [table_html(tb) for tb in t["tables"]]
+    if t["tips"]:
+        out.append('<div class="tipbox"><b>Exam tips from the channel</b><ul>' + "".join(f"<li>{x}</li>" for x in t["tips"]) + '</ul></div>')
+    if t["histories"]:
+        out.append(h2("History taking — channel scripts"))
+        out += [history_html(pid) for pid in t["histories"]]
+    if t["quiz"]:
+        rows = "".join(f'<tr><td class="num">{i}</td><td>{q}</td><td>{a or "—"}</td></tr>' for i, (q, a) in enumerate(t["quiz"], 1))
+        out.append(f'<div class="tbl">{h2("Previous quiz questions")}<table><thead><tr><th>#</th><th>Question</th><th>Answer (as given in the channel)</th></tr></thead>'
+                   f'<tbody>{rows}</tbody></table></div>')
     out.append('</section>')
     return "\n".join(out)
 
@@ -190,19 +183,18 @@ def page_html(catalog, pages=None):
     cover_img = "pvd_popliteal_pulse"
     cover = (f'<section class="cover"><div class="cv-band"></div><div class="cv-in">'
              f'<div class="cv-k">Surgery · Clinical Skills</div><h1>OSCE Study Guide</h1>'
-             f'<p class="cv-s">One marking-order checklist per station, with drawings, inspection maps and must-know tables — 9 syllabus topics</p>'
+             f'<p class="cv-s">Every station from the Competenze Cliniche channel: checklists, examiner points, history scripts and previous quiz questions</p>'
              f'<p class="cv-ar" dir="rtl" lang="ar">دليل المذاكرة لامتحان المهارات الإكلينيكية – الجراحة</p>'
              f'<img class="cv-img" src="images/{cover_img}.png" alt="">'
              f'<ol class="cv-list">' + "".join(f"<li>{t['title']}</li>" for t in TOPICS) + '</ol></div></section>')
     tocs = (f'<section class="toc"><h1>Contents</h1><ol>{toc}</ol>'
             f'<div class="howto"><h3>How every topic is organised</h3><ol>'
             f'<li><b>ملخص</b> – short Arabic summary</li>'
-            f'<li><b>OSCE checklist</b> – the station in the order your doctors taught it. Each phase says how many things to do; '
-            f'each step says how and what you may find; the drawings sit right under the phase they show. Tick P / MP / F while you practise. '
-            f'<span class="src notes">from your lecture notes</span> = written only from what the doctor said · '
-            f'<span class="src std">standard version</span> = topic not covered in your notes.</li>'
-            f'<li><b>Inspection map</b> – numbered red markers + table</li><li><b>Key tables</b> – only the must-know ones</li></ol>'
-            f'<p class="note">HELP = Hello (introduction &amp; consent) · Exposure · Lighting · Position (and ask about pain), then wash hands. '
+            f'<li><b>OSCE checklists</b> – every station of the topic, step by step in the channel’s order. Each phase says how many things '
+            f'to do; drawings sit under the phase they show; ★ box = the points the examiner looks for. Tick P / MP / F while you practise.</li>'
+            f'<li><b>History taking</b> – the channel’s Arabic question scripts. Not everything is asked: read the parts most related to your case.</li>'
+            f'<li><b>Previous quiz questions</b> – from earlier groups, with the channel’s answers where given.</li></ol>'
+            f'<p class="note">Source: Telegram channel “Competenze Cliniche 313” (summaries written from the doctors’ voice notes). '
             f'P = performed · MP = partially performed · F = failed.</p></div></section>')
     body = cover + tocs + "\n".join(topic_html(t, catalog) for t in TOPICS)
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Surgery OSCE Study Guide</title>'

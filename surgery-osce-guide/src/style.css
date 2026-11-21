@@ -163,3 +163,11 @@ td.bx span{display:inline-block;width:3.8mm;height:3.8mm;border:1.3px solid var(
 .src.std{background:#e6e9ee;color:#5d6b7c}
 .ck.std .ck-t{background:#6b7a8c}
 .howto .src{margin-left:0}
+
+.pts{background:#fff8e1;border:1px solid #f0d27a;border-radius:0 0 2mm 2mm;padding:2mm 3mm;font-size:8.6pt;margin-top:-1mm;break-inside:avoid}
+.tipbox{border:1.5px solid var(--teal);background:var(--teal-l);border-radius:2.5mm;padding:2mm 4mm;margin:3mm 0;font-size:9pt;break-inside:avoid}
+.tipbox ul{margin:1mm 0 0;padding-left:5mm}
+.hist{margin-bottom:4mm;break-inside:avoid}
+.hist-b{border:1px solid var(--line);border-top:none;padding:2mm 3.5mm;font-family:"Naskh",serif;font-size:9.6pt;line-height:1.7;text-align:right}
+.hist-b p{margin:.6mm 0}
+.hist-b b{color:var(--teal);font-family:"SansAr","Naskh",serif}
